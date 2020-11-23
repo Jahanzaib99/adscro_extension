@@ -1,0 +1,40 @@
+{
+    "name": "Adscro Extension",
+    "version": "1.0",
+    "description": "Adscro Extension!",
+    "permissions": ["*://adscro.com/adscro/", "*://wolfiz.com/*", "*://www.facebook.com/*", "background", "activeTab", "tabs", "storage", "unlimitedStorage", "downloads", "declarativeContent"],
+    "background": {
+        "scripts": ["./background.js", "jquery-validate.min.js", "jquery.js", "content-script.js", "popup.js"],
+        "persistent": false
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "images/get_started16.png",
+            "32": "images/get_started32.png",
+            "48": "images/get_started48.png",
+            "128": "images/get_started128.png"
+        },
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "images/get_started16.png",
+        "32": "images/get_started32.png",
+        "48": "images/get_started48.png",
+        "128": "images/get_started128.png"
+    },
+    "web_accessible_resources": [
+        "http://*/*",
+        "https://*/*",
+        "styles/*",
+        "fonts/*"
+    ],
+    "content_scripts": [{
+        "run_at": "document_end",
+        "matches": ["*://wolfiz.com/*", "*://www.facebook.com/*"],
+        "js": [
+            "jquery-validate.min.js", "jquery.js", "content-script.js", "friends.js"
+        ]
+    }],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "manifest_version": 2
+}
